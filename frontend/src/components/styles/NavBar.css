@@ -1,0 +1,46 @@
+.custom-container{
+    margin: 0;
+    width: 100%;
+    margin: 0 40px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.navbar-title{
+    display: inline;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-weight: 700;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-box-decoration-break: clone;
+}
+  .navbar-title1 {
+    background-image: linear-gradient(to right, #21d37a, #0e752d);
+  }
+
+.navbar-brand{
+    padding-top: 5px;
+}
+
+.navbar-link{
+    color:white;
+}
+
+.custom-dropdown-title.navbar-dark .navbar-toggler-icon {
+    color: white;
+  }
+
+.nav-container{
+  width: 70%;
+}
+
+.navbar-btn:hover{
+  text-decoration: underline;
+}
+
+.nav-toggle{
+  margin-right: 33px;
+
+}
