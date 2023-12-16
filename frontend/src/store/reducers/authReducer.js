@@ -1,6 +1,9 @@
+
+
 const initialState = {
     isReg: false,
     isLogined: false,
+    isErrors: [],
   };
   
   const authReducer = (state = initialState, action) => {
@@ -9,6 +12,8 @@ const initialState = {
         return { ...state, isReg: action.payload };
       case "SET_LOGIN_STATUS":
         return { ...state, isLogined: action.payload };
+      case "SET_AUTH_ERRORS":
+        return {...state, isErrors: action.payload}
       default:
         return state;
     }

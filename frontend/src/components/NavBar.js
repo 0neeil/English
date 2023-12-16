@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink as Link } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { setRegStatus, setLoginStatus } from "../store/actions/authActions";
+import { setRegStatus, setLoginStatus, setAuthError } from "../store/actions/authActions";
 import {
   REGISTRATION_ROUTE,
   LOGIN_ROUTE,
@@ -18,13 +18,12 @@ const NavBar = () => {
   const isLogined = useSelector((state) => state.auth.isLogined);
 
   const handleToggle = (newIsReg) => {
+    dispatch(setAuthError([]))
     dispatch(setRegStatus(newIsReg));
-    console.log("reg "+ newIsReg)
   };
 
   const handleSubmit = (newIsLogin) => {
     dispatch(setLoginStatus(newIsLogin));
-    console.log("log "+ newIsLogin)
   };
 
   return (

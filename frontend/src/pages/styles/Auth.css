@@ -1,6 +1,5 @@
 .auth-container{
     width: 100%;
-    
     padding: 30px 48px;
 }
 
@@ -35,4 +34,16 @@
   
   *::-webkit-scrollbar-track {
     background-color: rgb(33,37,41); /* цвет фона */
+  }
+
+  .auth-errors{
+    max-width: 700px;
+    background-color: rgba(150, 0, 0, 0.24);
+    min-width: 324px;
+    padding: 12px 10px 0px;
+    margin-bottom: 10px;
+    border: 2px solid brown;
+    text-align: center;
+    border-radius: 12px;
+    color: white;
   }
