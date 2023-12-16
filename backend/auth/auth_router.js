@@ -9,7 +9,7 @@ router.post('/registration',[
     check('email', 'Please enter valid e-mail').isEmail(),
     check('password', 'Password must be smth between 8 and 16 characters').isLength({min:8, max:16})
 ], controller.registration)
-
+router.post('/login', controller.login)
 // router.get('/check', authMiddleware(), controller.check)
 
 module.exports = router
