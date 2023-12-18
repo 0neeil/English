@@ -2,6 +2,13 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../db_connection');
 
 const User = sequelize.define('User', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    foreignKey: true,
+    allowNull: false,
+    autoIncrement: true,
+  },
   username: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -24,6 +31,10 @@ const User = sequelize.define('User', {
     allowNull: false,
     defaultValue: "USER"
   },
+  isbanned:{
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+  }
 });
 
 module.exports = User;
