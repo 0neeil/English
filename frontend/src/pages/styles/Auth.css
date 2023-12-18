@@ -3,6 +3,10 @@
     padding: 30px 48px;
 }
 
+.text{
+  color: white;
+}
+
 .row.no-gutters {
     --bs-gutter-x: 0;
   }
@@ -25,15 +29,15 @@
 }
 
 *::-webkit-scrollbar {
-    width: 12px; /* ширина скроллбара */
+    width: 12px; 
   }
   
   *::-webkit-scrollbar-thumb {
-    background-color: #2c2d31; /* цвет ползунка */
+    background-color: #2c2d31; 
   }
   
   *::-webkit-scrollbar-track {
-    background-color: rgb(33,37,41); /* цвет фона */
+    background-color: rgb(33,37,41); 
   }
 
   .auth-errors{

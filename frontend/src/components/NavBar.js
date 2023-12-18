@@ -14,7 +14,6 @@ import "./styles/NavBar.css";
 
 const NavBar = () => {
   const dispatch = useDispatch();
-  const isReg = useSelector((state) => state.auth.isReg);
   const isLogined = useSelector((state) => state.auth.isLogined);
 
   const handleToggle = (newIsReg) => {

@@ -5,13 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
 import { registration, login } from "../http/userAPI";
 import { setRegStatus, setLoginStatus, setAuthError } from "../store/actions/authActions";
-import { LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 import "./styles/Auth.css";
 
 const Auth = () => {
   const dispatch = useDispatch();
   const isReg = useSelector((state) => state.auth.isReg);
-  const isLogined = useSelector((state) => state.auth.isLogined);
   const isErrors = useSelector((state) => state.auth.isErrors)
   const navigate = useNavigate();
 
@@ -27,7 +26,6 @@ const Auth = () => {
   });
 
   const handleSendForm = async (event) => {
-    let errors = [] 
     let response
     if (isReg === true) {
       if(password === confirmPassword){
