@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 module.exports = function (){
     return function (req, res, next){
         try {
-            console.log(req.headers)
             if(!req.headers.authorization) {
                 res.status(401).json({message : "User must be authorized"})
             }
@@ -16,7 +15,7 @@ module.exports = function (){
             }
         } catch (error) {
             console.log(error)
-            res.status(401).json({message : "user must be authorized"})
+            res.status(401).json({message : "User must be authorized"})
         }
     }
 

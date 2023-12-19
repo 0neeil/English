@@ -4,9 +4,9 @@ const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken')
 const { validationResult } = require("express-validator")
 
-const generateJwt = (id, username, role) => {
+const generateJwt = (id, role) => {
     return jwt.sign(
-        {id, username, role},
+        {id, role},
         process.env.JWT_SECRET,
         {expiresIn: '2h'}
     )
@@ -64,9 +64,10 @@ class AuthController{
             }
     
             const passwordMatch = await bcrypt.compare(password, dbUser.dataValues.password);
-    
+            
             if (passwordMatch) {
-                const token = generateJwt(dbUser.dataValues.id, dbUser.dataValues.username, dbUser.dataValues.role);
+
+                const token = generateJwt(dbUser.dataValues.id, dbUser.dataValues.role);
                 return res.status(200).json({
                     message: "Successful authorization",
                     token: token

@@ -5,28 +5,28 @@ import { BrowserRouter } from 'react-router-dom';
 import AppRouters from './components/AppRouters';
 import { check } from "./http/userAPI";
 import { setLoginStatus } from "./store/actions/authActions"
+import { useDispatch } from 'react-redux';
 
 
 
 function App() {
-
+  
   const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    check().then(data=>{
-      if(data?.status < 400){
-       
-        if(data.role === "ADMIN"){
-
+    check().then(data => {
+      if (data?.status < 400) {
+        if (data.role === "ADMIN") {
+          
         }
-         setLoginStatus(true) 
+        dispatch(setLoginStatus(true));
+      } else {
+        dispatch(setLoginStatus(false));
       }
-      else{
-        setLoginStatus(false)
-        localStorage.clear();
-      }
-    }).finally(()=> setLoading(false))
-  }, [])
+    }).finally(() => setLoading(false));
+  }, [dispatch]); 
+
 
   if(loading){
     return <Spinner animation={"grow"}></Spinner>
