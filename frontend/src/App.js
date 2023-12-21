@@ -22,6 +22,7 @@ function App() {
         }
         dispatch(setLoginStatus(true));
       } else {
+        localStorage.clear()
         dispatch(setLoginStatus(false));
       }
     }).finally(() => setLoading(false));

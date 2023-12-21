@@ -20,6 +20,20 @@ export const login = async (email, password) => {
     }
 }
 
+export const getUser = async () => {
+    try {
+        let {id} = jwtDecode(localStorage.token, { header: false });
+        const response = await $authHost.get(`/profile/user/${id}`, {
+            headers:{
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
 export const check = async () => {
     try {
         const response = await $authHost.get('/auth/check', {
@@ -29,13 +43,12 @@ export const check = async () => {
         });
 
         let decodedData = jwtDecode(response.data.token, { header: false });
-        console.log(decodedData);
 
         return {
             status: response.status,
             role: decodedData.role
         };
     } catch (error) {
-        console.log(error.response);
+        return error
     }
 }

@@ -65,7 +65,7 @@ const NavBar = () => {
                   as={Link}
                   className="text-white navbar-btn"
                   to={MAIN_ROUTE}
-                  onClick={() => handleSubmit(false)}
+                  onClick={() => { handleSubmit(false); localStorage.clear(); }}
                 >
                   Log out
                 </Nav.Link>

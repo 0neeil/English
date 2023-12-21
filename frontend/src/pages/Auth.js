@@ -3,7 +3,7 @@ import { Form, Button, NavLink, FormGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
-import { registration, login } from "../http/userAPI";
+import { registration, login, getUser } from "../http/userAPI";
 import { setRegStatus, setLoginStatus, setAuthError } from "../store/actions/authActions";
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 import "./styles/Auth.css";
@@ -47,12 +47,14 @@ const Auth = () => {
       if(response.status !== 200){
         dispatch(setAuthError([{msg: response.response.data.message}]))
       }
-      
       else{
         
-        handleSubmit(true)
-        localStorage.setItem('token', response.data.token)
         
+        localStorage.setItem('token', response.data.token)
+
+        const {data} = await getUser()
+        localStorage.setItem('user', JSON.stringify(data))
+        handleSubmit(true)
         navigate('/')
       }
     }
