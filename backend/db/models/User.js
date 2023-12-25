@@ -1,11 +1,11 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../db_connection');
+const UserInforms = require('./UserInform'); 
 
 const User = sequelize.define('User', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    foreignKey: true,
     allowNull: false,
     autoIncrement: true,
   },
@@ -26,15 +26,18 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  role:{
+  role: {
     type: DataTypes.STRING,
     allowNull: false,
     defaultValue: "USER"
   },
-  isbanned:{
+  isbanned: {
     type: DataTypes.BOOLEAN,
     defaultValue: false
-  }
+  },
 });
+
+User.hasOne(UserInforms, { foreignKey: 'userId', as: 'userinforms' });
+UserInforms.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
 module.exports = User;

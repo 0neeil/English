@@ -1,8 +1,10 @@
 const User = require('../db/models/User')
+const UserInforms = require('../db/models/UserInform')
 const Sequelize = require('sequelize');
 const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken')
-const { validationResult } = require("express-validator")
+const mailer = require("../service/mailer_service")
+const { validationResult } = require("express-validator");
 
 const generateJwt = (id, role) => {
     return jwt.sign(
@@ -40,11 +42,26 @@ class AuthController{
                 }
             }
             else{
-                bcrypt.genSalt(7,  function(err, salt) {
-                    bcrypt.hash(password, salt, async function(err, hash) {
-                        await User.create({email: email, username: username, password: hash })
+                bcrypt.genSalt(7, function (err, salt) {
+                    bcrypt.hash(password, salt, async function (err, hash) {
+                        const createdUser = await User.create({
+                            email: email,
+                            username: username,
+                            password: hash,
+                        });
 
-                        res.status(200).json({message: "User added"})
+                        await UserInforms.create({
+                            userId: createdUser.id,   
+                        });
+                        const message = {
+                            to: req.body.email,
+                            subject: "congratulation",
+                            text: "good job",
+
+                        }
+                        mailer(message)
+
+                        res.status(200).json({ message: 'User added' });
                     });
                 });
             }
@@ -58,7 +75,6 @@ class AuthController{
     
         try {
             const dbUser = await User.findOne({ where: { email: email } });
-    
             if (!dbUser) {
                 return res.status(403).json({ message: "User with this email isn't found" });
             }
