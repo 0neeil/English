@@ -34,6 +34,30 @@ export const getUser = async () => {
     }
 }
 
+export const updateUserInforms = async (name, biography, phone, link1, link2, link3) =>{
+    try {
+        let {id} = jwtDecode(localStorage.token, { header: false });
+        const response = await $authHost.put(`/profile/updateinform/${id}`,
+        {
+            name: name,
+            biography: biography,
+            phone: phone,
+            link1: link1,
+            link2: link2,
+            link3: link3
+        },
+        {
+            headers:{
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        
+        })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
 export const check = async () => {
     try {
         const response = await $authHost.get('/auth/check', {

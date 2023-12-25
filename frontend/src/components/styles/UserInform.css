@@ -11,3 +11,29 @@
     max-width: 300px;
     
 }
+
+.edit-name{
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.edit-lable{
+    color: rgba(211, 211, 211, 0.774)
+}
+
+.edit-username{
+    color: rgba(211, 211, 211, 0.774);
+    font-size: 18px;
+}
+
+.edit-profile-button{
+    width: 100%;
+    background: #1cb367;
+    border: 1px solid #0e752d;
+    margin-bottom: 15px;
+}
+
+.edit-profile-button:hover{
+    background: #0e752d;
+    border: 1px solid #0a5320;
+}

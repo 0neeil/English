@@ -92,6 +92,7 @@ const Auth = () => {
               onChange={e => setEmail(e.target.value)} 
               required 
             />
+            {console.log(email)}
           </Form.Group>
           :
           <>          

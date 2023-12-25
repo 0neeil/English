@@ -35,9 +35,7 @@
     height: 100%;
 }
 
-.username{
-    text-transform: uppercase;
-}
+
 
 .profile-content{
     border-radius: 20px;
@@ -45,9 +43,3 @@
     background-color: rgb(33,37,41);
 }
 
-.edit-profile-button{
-    width: 100%;
-    background: #21d37a;
-    border: 1px solid #0e752d;
-    margin-bottom: 15px;
-}
