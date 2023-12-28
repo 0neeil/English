@@ -1,3 +1,18 @@
+.profile-img-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-img-edit{
+    margin: 20px 0 30px;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border: 1px solid #0e752d;
+    border-radius: 100px;
+}
+
 .edit-group{
     margin-bottom: 10px;
 }

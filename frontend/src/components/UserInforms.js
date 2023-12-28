@@ -37,7 +37,11 @@ const UserInforms = () =>{
     return (
         <div>
         <div className="profile-img-container">
-            <img className="profile-img" src={img} alt="Your proto"></img>
+            <button 
+                className="profile-img-edit"
+            >
+                <img className="profile-img" src={img} alt="Your proto"></img>
+            </button>
         </div>
 
         <div>

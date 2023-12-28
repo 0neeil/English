@@ -5,7 +5,6 @@ import './styles/Profile.css'
 
 
 const Profile = () =>{ 
-
     return (
         <div className="profile-container">
             <h2 className="page-title">User Profile</h2>
@@ -17,8 +16,7 @@ const Profile = () =>{
                     <h4 className="d-block page-title">Stats</h4>
                 </div>
             </div>
-        </div>
-        
+        </div>   
     )
 }
 

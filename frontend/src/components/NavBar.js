@@ -8,6 +8,7 @@ import {
   LOGIN_ROUTE,
   MAIN_ROUTE,
   PROFILE_ROUTE,
+  SETTINGS_ROUTE,
 } from "../utils/consts";
 
 import "./styles/NavBar.css";
@@ -50,13 +51,12 @@ const NavBar = () => {
               )}
               <NavDropdown
                 id="nav-dropdown-dark-example"
-                title="Dropdown"
+                title="Settings"
                 menuVariant="dark"
                 className="navbar-btn"
               >
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={SETTINGS_ROUTE}>Change password</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={SETTINGS_ROUTE} href="#action/3.2">Change email</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
               </NavDropdown>
