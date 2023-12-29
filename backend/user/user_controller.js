@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const User = require("../db/models/User")
 const UserInform = require("../db/models/UserInform");
 const UserVocabularies = require("../db/models/UserVocabulary")
@@ -28,6 +29,7 @@ class UserController {
         }
     }
 
+    //to refine
     async updateUserInform (req, res) {
         try {
             const {id} = req.params
@@ -49,6 +51,47 @@ class UserController {
             res.status(500).json(error)
         }
     } 
+
+
+    async addNewWord (req, res) {
+        try {
+            const {id} = req.params
+            const {word, transcription, translate, usingExample} = req.body
+            const words = await Vocabularies.findOne({where: {[Sequelize.Op.and]:[
+                {word: word},
+                {translate: translate}
+            ]
+            }})
+            if (words){
+                const userWord = await UserVocabularies.findOne({where: {
+                    wordId: words.id
+                }})
+                if(!userWord){
+                    await UserVocabularies.create({
+                        userId: id,
+                        wordId: words.id,
+                    })
+                    res.status(200).json({message:"word added"})
+                }
+                res.status(400).json({message:"word already exist"})
+            }
+            else{
+                const createdWord = await Vocabularies.create({
+                    word: word,
+                    transcription: transcription,
+                    translate: translate,
+                    usingExample: usingExample
+                })
+                await UserVocabularies.create({
+                    userId: id,
+                    wordId: createdWord.id
+                })
+                res.status(200)
+            }
+        } catch (error) {
+             res.status(400).json(error)
+        }
+    }
 }
 
 module.exports = new UserController() 

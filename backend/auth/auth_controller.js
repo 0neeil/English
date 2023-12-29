@@ -53,13 +53,6 @@ class AuthController{
                         await UserInforms.create({
                             userId: createdUser.id,   
                         });
-                        const message = {
-                            to: req.body.email,
-                            subject: "congratulation",
-                            text: "good job",
-
-                        }
-                        mailer(message)
 
                         res.status(200).json({ message: 'User added' });
                     });

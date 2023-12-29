@@ -9,12 +9,6 @@ const Vocabularies = sequelize.define('Vocabularies',{
         primaryKey: true,
         autoIncrement: true
     },
-    wordId:{
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: false,
-        autoIncrement: false
-    },
     word:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -31,9 +25,13 @@ const Vocabularies = sequelize.define('Vocabularies',{
         type: DataTypes.STRING,
         allowNull: true
     }
+},
+{
+    charset: 'utf8mb4',
+    collate: 'utf8mb4_general_ci'
 })
 
-// Vocabularies.hasOne(UserVocabularies, {foreignKey: 'wordId', as: 'uservocabularies'})
-// UserVocabularies.belongsTo(Vocabularies, {foreignKey: 'wordId', as: 'vocabularies'})
+ Vocabularies.hasOne(UserVocabularies, {foreignKey: 'wordId', as: 'uservocabularies'})
+ UserVocabularies.belongsTo(Vocabularies, {foreignKey: 'wordId', as: 'vocabularies'})
 
 module.exports = Vocabularies
