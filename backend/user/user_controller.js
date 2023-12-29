@@ -1,5 +1,7 @@
 const User = require("../db/models/User")
 const UserInform = require("../db/models/UserInform");
+const UserVocabularies = require("../db/models/UserVocabulary")
+const Vocabularies = require("../db/models/Vocabulary")
 
 class UserController {
     async getUserByid(req, res) {

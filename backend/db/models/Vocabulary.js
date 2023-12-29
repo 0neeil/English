@@ -1,12 +1,19 @@
 const {DataTypes} = require('sequelize')
 const sequelize = require('../db_connection')
+const UserVocabularies = require('./UserVocabulary')
 
-const Vocabulary = sequelize.define('Vocabulary',{
+const Vocabularies = sequelize.define('Vocabularies',{
     id:{
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
+    },
+    wordId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: false,
+        autoIncrement: false
     },
     word:{
         type: DataTypes.STRING,
@@ -26,4 +33,7 @@ const Vocabulary = sequelize.define('Vocabulary',{
     }
 })
 
-module.exports = Vocabulary
+// Vocabularies.hasOne(UserVocabularies, {foreignKey: 'wordId', as: 'uservocabularies'})
+// UserVocabularies.belongsTo(Vocabularies, {foreignKey: 'wordId', as: 'vocabularies'})
+
+module.exports = Vocabularies
