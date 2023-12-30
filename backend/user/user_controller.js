@@ -63,17 +63,28 @@ class UserController {
             ]
             }})
             if (words){
-                const userWord = await UserVocabularies.findOne({where: {
-                    wordId: words.id
-                }})
-                if(!userWord){
-                    await UserVocabularies.create({
+                const [userWord, createdWord] = await UserVocabularies.findOrCreate({
+                    where:{
                         userId: id,
                         wordId: words.id,
-                    })
+                    }
+                })
+
+                if(createdWord)
                     res.status(200).json({message:"word added"})
-                }
-                res.status(400).json({message:"word already exist"})
+                else
+                    res.status(400).json({message:"word already exist"})
+                // const userWord = await UserVocabularies.findOne({where: {
+                //     wordId: words.id
+                // }})
+                // if(!userWord){
+                //     await UserVocabularies.create({
+                //         userId: id,
+                //         wordId: words.id,
+                //     })
+                //     res.status(200).json({message:"word added"})
+                // }
+                // res.status(400).json({message:"word already exist"})
             }
             else{
                 const createdWord = await Vocabularies.create({
@@ -86,7 +97,7 @@ class UserController {
                     userId: id,
                     wordId: createdWord.id
                 })
-                res.status(200)
+                res.status(200).json({message: "Created new words in global vocabularies"})
             }
         } catch (error) {
              res.status(400).json(error)
