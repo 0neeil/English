@@ -1,7 +1,9 @@
-import { ADMIN_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, SETTINGS_ROUTE } from "./utils/consts"
+import { ADMIN_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, SETTINGS_ROUTE, VOCABULARY_MYWORDS_ROUTE } from "./utils/consts"
 import Auth from "./pages/Auth"
 import Profile from "./pages/Profile"
-import Settings from "./pages/Settings"
+import Setup from "./pages/Setup"
+import Vocabulary from "./pages/Vocabulary"
+import MyWords from "./pages/MyWords"
 
 
 export const adminRoutes =[
@@ -18,8 +20,17 @@ export const authRoute = [
     },
     {
         path: SETTINGS_ROUTE,
-        Component: <Settings/>
-    }
+        Component: <Setup/>
+    },
+    {
+        path: VOCABULARY_MYWORDS_ROUTE,
+        Component: 
+            <>
+                <Vocabulary/>
+                <MyWords/>
+            </>
+    },
+
 
 ]
 

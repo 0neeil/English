@@ -9,6 +9,7 @@ import {
   MAIN_ROUTE,
   PROFILE_ROUTE,
   SETTINGS_ROUTE,
+  VOCABULARY_MYWORDS_ROUTE,
 } from "../utils/consts";
 
 import "./styles/NavBar.css";
@@ -41,25 +42,30 @@ const NavBar = () => {
               <Nav.Link as={Link} to={MAIN_ROUTE} className="text-white navbar-btn">
                 Home
               </Nav.Link>
-              <Nav.Link href="#link" className="text-white navbar-btn">
-                Link
-              </Nav.Link>
+
               {isLogined && (
-                <Nav.Link as={Link} to={PROFILE_ROUTE} className="text-white navbar-btn">
-                  Profile
-                </Nav.Link>
+                <div className="d-flex">
+                  <Nav.Link as={Link} to={VOCABULARY_MYWORDS_ROUTE} className="text-white navbar-btn">
+                    Vocabulary
+                  </Nav.Link>
+                  <Nav.Link as={Link} to={PROFILE_ROUTE} className="text-white navbar-btn">
+                    Profile
+                  </Nav.Link>
+                  <NavDropdown
+                    id="nav-dropdown-dark-example"
+                    title="Settings"
+                    menuVariant="dark"
+                    className="navbar-btn"
+                  >
+                    <NavDropdown.Item as={Link} to={SETTINGS_ROUTE}>Change password</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to={SETTINGS_ROUTE} href="#action/3.2">Change email</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                  </NavDropdown>
+
+                </div>
               )}
-              <NavDropdown
-                id="nav-dropdown-dark-example"
-                title="Settings"
-                menuVariant="dark"
-                className="navbar-btn"
-              >
-                <NavDropdown.Item as={Link} to={SETTINGS_ROUTE}>Change password</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={SETTINGS_ROUTE} href="#action/3.2">Change email</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-              </NavDropdown>
+              
               {isLogined ? (
                 <Nav.Link
                   as={Link}

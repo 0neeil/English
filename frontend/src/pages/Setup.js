@@ -1,8 +1,8 @@
 import React from "react"
 
-const Settings = () => {
+const Setup = () => {
     return(
      <div>Settings</div>
     )
 }
-export default Settings
+export default Setup

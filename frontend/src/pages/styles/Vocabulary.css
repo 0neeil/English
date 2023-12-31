@@ -1,0 +1,12 @@
+.vocabulary-container{
+    margin-top: 10px;
+    padding: 0 48px 10px;
+    border-radius: 20px;
+    border-top: 1px solid #0e752d;
+    border-bottom: 1px solid #0e752d;
+    background-color: rgba(65, 65, 65, 0.185);
+}
+
+.text{
+    color: white;
+}
