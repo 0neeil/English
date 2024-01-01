@@ -58,6 +58,20 @@ export const updateUserInforms = async (name, biography, phone, link1, link2, li
     }
 }
 
+export const allWords = async () =>{
+    try {
+        let {id} = jwtDecode(localStorage.token, { header: false });
+        const {data} = await $authHost.get(`/profile/allwords/${id}`,
+        { 
+            headers:{
+            'Authorization': `Bearer ${localStorage.token}`
+        }})
+        return data
+    } catch (error) {
+        
+    }
+}
+
 export const check = async () => {
     try {
         const response = await $authHost.get('/auth/check', {
