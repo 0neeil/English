@@ -6,5 +6,6 @@ const authMiddleware = require("../middleware/auth_middleware")
 router.get("/user/:id", controller.getUserByid)
 router.put("/updateinform/:id", controller.updateUserInform)
 router.post("/addword/:id", controller.addNewWord)
+router.get("/allwords/:id", controller.getAllWords)
 
 module.exports = router

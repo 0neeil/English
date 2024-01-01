@@ -71,20 +71,9 @@ class UserController {
                 })
 
                 if(createdWord)
-                    res.status(200).json({message:"word added"})
+                    res.status(200).json({message:"Word added"})
                 else
-                    res.status(400).json({message:"word already exist"})
-                // const userWord = await UserVocabularies.findOne({where: {
-                //     wordId: words.id
-                // }})
-                // if(!userWord){
-                //     await UserVocabularies.create({
-                //         userId: id,
-                //         wordId: words.id,
-                //     })
-                //     res.status(200).json({message:"word added"})
-                // }
-                // res.status(400).json({message:"word already exist"})
+                    res.status(400).json({message:"Word already exist"})
             }
             else{
                 const createdWord = await Vocabularies.create({
@@ -101,6 +90,28 @@ class UserController {
             }
         } catch (error) {
              res.status(400).json(error)
+        }
+    }
+
+    async getAllWords (req, res) {
+        try {
+            const {id} = req.params
+            const words = await UserVocabularies.findAll({
+                where:{
+                    userId: id,
+                 },
+                 attributes:[],
+                 include: [
+                    {
+                        model: Vocabularies,
+                        as: 'vocabularies', 
+                        attributes: ["word", "transcription", "translate", "usingExample"]
+                    }
+                ]
+            })
+            res.status(200).json(words)
+        } catch (error) {
+            res.status(400).json(`${error}`)
         }
     }
 }
