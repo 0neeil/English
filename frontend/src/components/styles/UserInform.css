@@ -9,7 +9,7 @@
     width: 200px;
     height: 200px;
     overflow: hidden;
-    border: 1px solid #0e752d;
+    border: 3px solid #0e752d;
     border-radius: 100px;
 }
 
@@ -51,4 +51,11 @@
 .edit-profile-button:hover{
     background: #0e752d;
     border: 1px solid #0a5320;
+}
+
+.a{
+    color:rgba(15, 199, 15, 0.548);
+}
+.a:hover{
+    color:rgba(12, 148, 12, 0.548);
 }

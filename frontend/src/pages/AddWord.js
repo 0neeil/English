@@ -20,9 +20,9 @@ const AddWord = () => {
   };
 
   return (
-    <div className="text">
-      <h2>Add Word</h2>
-      <Form onSubmit={handleSubmit}>
+    <div className="text addword-container">
+      <h2 className="addword-title">Add Word</h2>
+      <Form className="addword-form" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="word">
           <Form.Label>Word</Form.Label>
           <Form.Control
@@ -64,7 +64,7 @@ const AddWord = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button className="addword-button" variant="success" type="submit">
           Submit
         </Button>
       </Form>

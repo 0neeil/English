@@ -16,6 +16,7 @@
 
 .profile-img-group{
  background-color: rgb(33,37,41);
+ border-top: 1px solid #0e752d;
  border-radius: 20px;
  margin: 0 auto;
  margin-bottom: 50px;
@@ -33,6 +34,7 @@
 .profile-content{
     border-radius: 20px;
     margin-bottom: 50px;
+    border-top: 1px solid #0e752d;
     background-color: rgb(33,37,41);
 }
 

@@ -151,7 +151,7 @@ const Auth = () => {
 
           <Button 
             className="auth-button" 
-            variant="primary" 
+            variant="success" 
             type="button"  
             onClick={() => handleSendForm()}
           >
