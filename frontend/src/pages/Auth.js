@@ -51,9 +51,6 @@ const Auth = () => {
         
         
         localStorage.setItem('token', response.data.token)
-
-        const {data} = await getUser()
-        localStorage.setItem('user', JSON.stringify(data))
         handleSubmit(true)
         navigate('/')
       }

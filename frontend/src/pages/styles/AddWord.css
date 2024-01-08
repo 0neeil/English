@@ -4,6 +4,7 @@
     border-radius: 20px;
     border-top: 1px solid #0e752d;
     background-color: rgba(65, 65, 65, 0.185);
+    padding-bottom: 20px;
 }
 
 .addword-title{
@@ -19,3 +20,15 @@
 .addword-button{
     width: 150px;
 }
+
+.error-msg{
+    max-width: 700px;
+    background-color: rgba(150, 0, 0, 0.24);
+    min-width: 324px;
+    padding: 12px 10px 12px;
+    margin-bottom: 10px;
+    border: 2px solid brown;
+    text-align: center;
+    border-radius: 12px;
+    color: white;
+  }

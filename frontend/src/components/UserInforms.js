@@ -1,21 +1,35 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap"
 import { updateUserInforms } from "../http/userAPI"
+import { getUser } from "../http/userAPI"
 import img from "../img/default_avatar.png"
 import './styles/UserInform.css'
 
 const UserInforms = () =>{
-    const userData = JSON.parse(localStorage.user)
+    const [userData, setUserData] = useState({})
+    const [editProfile, setEditProfile] = useState(false)
+    const [editName, setEditName] = useState("")
+    const [editBio, setEditBio] = useState("")
+    const [editPhone, setEditPhone] = useState("")
+    const [editLink1, setEditLink1] = useState("")
+    const [editLink2, setEditLink2] = useState("")
+    const [editLink3, setEditLink3] = useState("")
 
+        useEffect( () => {
+            async function fetchData () {
+                const {data} = await getUser()
+                setEditName(data.userinforms.name)
+                setEditBio(data.userinforms.biography)
+                setEditPhone(data.userinforms.phone)
+                setEditLink1(data.userinforms.link1)
+                setEditLink2(data.userinforms.link2)
+                setEditLink3(data.userinforms.link3)
+            }
+            fetchData()
+        },[])
     
 
-    const [editProfile, setEditProfile] = useState(false)
-    const [editName, setEditName] = useState(userData.userinforms.name)
-    const [editBio, setEditBio] = useState(userData.userinforms.biography)
-    const [editPhone, setEditPhone] = useState(userData.userinforms.phone)
-    const [editLink1, setEditLink1] = useState(userData.userinforms.link1)
-    const [editLink2, setEditLink2] = useState(userData.userinforms.link2)
-    const [editLink3, setEditLink3] = useState(userData.userinforms.link3)
+    
     
 
     let formFields = [

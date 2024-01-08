@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, FormGroup, FormLabel } from "react-bootstrap";
 import "./styles/AddWord.css";
 
 const AddWord = () => {
@@ -7,22 +7,48 @@ const AddWord = () => {
   const [transcription, setTranscription] = useState("");
   const [translation, setTranslation] = useState("");
   const [usingExample, setUsingExample] = useState("");
+  const [errorMsg, setErrorMsg] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Здесь вы можете добавить логику для обработки данных формы
-    console.log("Submitted:", { word, transcription, translation, usingExample });
-    // Очистить поля формы
-    setWord("");
-    setTranscription("");
-    setTranslation("");
-    setUsingExample("");
+
+    const newErrorMsg = [];
+
+    if (word.length === 0) {
+      newErrorMsg.push({ status: 400, msg: "Word can't be empty" });
+    }
+
+    if (translation.length === 0) {
+      newErrorMsg.push({ status: 400, msg: "Translation can't be empty" });
+    }
+
+    if (newErrorMsg.length > 0) {
+      setErrorMsg(newErrorMsg);
+    } else {
+      setErrorMsg([{ status: 200, msg: `Word ${word} added` }]);
+      setWord("");
+      setTranscription("");
+      setTranslation("");
+      setUsingExample("");
+    }
   };
 
   return (
     <div className="text addword-container">
       <h2 className="addword-title">Add Word</h2>
+
       <Form className="addword-form" onSubmit={handleSubmit}>
+        <div>
+          {console.log(errorMsg)}
+          {errorMsg.map((elem) => (
+                
+                <div className={elem.status === 200 ? "success-msg" : "error-msg"} key={`${elem.msg}-${elem.status}`}>
+                  {console.log(elem)}
+                  {elem.msg}
+                </div>
+      
+            ))}
+        </div>
         <Form.Group className="mb-3" controlId="word">
           <Form.Label>Word</Form.Label>
           <Form.Control
@@ -64,7 +90,12 @@ const AddWord = () => {
           />
         </Form.Group>
 
-        <Button className="addword-button" variant="success" type="submit">
+        <Button
+          className="addword-button"
+          variant="success"
+          type="submit"
+          onClick={handleSubmit}
+        >
           Submit
         </Button>
       </Form>
