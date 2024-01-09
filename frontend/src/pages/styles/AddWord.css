@@ -31,4 +31,16 @@
     text-align: center;
     border-radius: 12px;
     color: white;
-  }
+}
+
+.success-msg{
+    max-width: 700px;
+    background-color: rgba(5, 150, 0, 0.24);
+    min-width: 324px;
+    padding: 12px 10px 12px;
+    margin-bottom: 10px;
+    border: 2px solid rgb(42, 165, 48);
+    text-align: center;
+    border-radius: 12px;
+    color: white;
+}

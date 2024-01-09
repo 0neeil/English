@@ -72,6 +72,30 @@ export const allWords = async () =>{
     }
 }
 
+export const addNewWord = async (word, transcription, translation, usingExample) => {
+    try {
+        let {id} = jwtDecode(localStorage.token, { header: false });
+        const response = await $authHost.post(`/profile/addword/${id}`, {
+           word: word,
+           transcription: transcription,
+           translate: translation,
+           usingExample: usingExample
+        },
+        {
+            headers:{
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        
+        })
+       
+        console.log(response)
+        return response
+    } catch (error) {
+        console.log(error)
+       return error 
+    }
+}
+
 export const check = async () => {
     try {
         const response = await $authHost.get('/auth/check', {

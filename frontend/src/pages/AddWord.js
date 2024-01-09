@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, FormGroup, FormLabel } from "react-bootstrap";
+import { addNewWord } from "../http/userAPI";
 import "./styles/AddWord.css";
 
 const AddWord = () => {
@@ -7,10 +8,16 @@ const AddWord = () => {
   const [transcription, setTranscription] = useState("");
   const [translation, setTranslation] = useState("");
   const [usingExample, setUsingExample] = useState("");
-  const [errorMsg, setErrorMsg] = useState([]);
+  const [msg, setMsg] = useState([]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const fields = [
+    { title: "Word", placeholder: "Enter word", type: "text", value: word, method: setWord },
+    { title: "Transcription", placeholder: "Enter transcription", type: "text", value: transcription, method: setTranscription },
+    { title: "Translation", placeholder: "Enter translation", type: "text", value: translation, method: setTranslation },
+    { title: "Using example", placeholder: "Enter using example", as: "textarea", rows: 3, value: usingExample, method: setUsingExample },
+  ];
+
+  const handleSubmit = async () => {
 
     const newErrorMsg = [];
 
@@ -23,13 +30,16 @@ const AddWord = () => {
     }
 
     if (newErrorMsg.length > 0) {
-      setErrorMsg(newErrorMsg);
+      setMsg(newErrorMsg);
     } else {
-      setErrorMsg([{ status: 200, msg: `Word ${word} added` }]);
+      const response = await addNewWord(word, transcription, translation, usingExample);
+      if(response.status ===200){
+      setMsg([{ status: 200, msg: `Word ${word} added` }]);
       setWord("");
       setTranscription("");
       setTranslation("");
       setUsingExample("");
+      }
     }
   };
 
@@ -37,65 +47,30 @@ const AddWord = () => {
     <div className="text addword-container">
       <h2 className="addword-title">Add Word</h2>
 
-      <Form className="addword-form" onSubmit={handleSubmit}>
+      <Form className="addword-form">
         <div>
-          {console.log(errorMsg)}
-          {errorMsg.map((elem) => (
-                
-                <div className={elem.status === 200 ? "success-msg" : "error-msg"} key={`${elem.msg}-${elem.status}`}>
-                  {console.log(elem)}
-                  {elem.msg}
-                </div>
-      
-            ))}
+          {msg.map((elem) => (
+            <div className={elem.status === 200 ? "success-msg" : "error-msg"} key={`${elem.msg}-${elem.status}`}>
+              {console.log(elem)}
+              {elem.msg}
+            </div>
+          ))}
         </div>
-        <Form.Group className="mb-3" controlId="word">
-          <Form.Label>Word</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter word"
-            value={word}
-            onChange={(e) => setWord(e.target.value)}
-          />
-        </Form.Group>
+        {fields.map((elem) => (
+          <Form.Group className="mb-3" key={elem.title}>
+            <Form.Label>{elem.title}</Form.Label>
+            <Form.Control
+              type={elem.type}
+              as={elem.as}
+              rows={elem.rows}
+              placeholder={elem.placeholder}
+              value={elem.value}
+              onChange={(e) => elem.method(e.target.value)}
+            />
+          </Form.Group>
+        ))}
 
-        <Form.Group className="mb-3" controlId="transcription">
-          <Form.Label>Transcription</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter transcription"
-            value={transcription}
-            onChange={(e) => setTranscription(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="translation">
-          <Form.Label>Translation</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter translation"
-            value={translation}
-            onChange={(e) => setTranslation(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="usingExample">
-          <Form.Label>Using Example</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="Enter using example"
-            value={usingExample}
-            onChange={(e) => setUsingExample(e.target.value)}
-          />
-        </Form.Group>
-
-        <Button
-          className="addword-button"
-          variant="success"
-          type="submit"
-          onClick={handleSubmit}
-        >
+        <Button className="addword-button" variant="success" onClick={()=> handleSubmit()}>
           Submit
         </Button>
       </Form>
